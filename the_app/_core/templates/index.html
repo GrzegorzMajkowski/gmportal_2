@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Witaj na stronie GM Portal!</h1>
+    <p class="lead">Dostarczmy najwyższej klasy rozwiązań i dobrą rozrywkę.</p>
+    <hr class="my-4">
+    <p>Portal ten jest demonstracją różnych rozwiązań bazujacych na Pythonie i frameworku Flask. Zapoznaj się z tymi możliwościami. Zaloguj się więc i do roboty.</p>
+    <a class="btn btn-primary " href="{{ url_for('authBP.login') }}" role="button">Logowanie</a>
+    <a class="btn btn-primary " href="{{ url_for('authBP.register') }}" role="button">Rejestracja</a>
+</div>
+{% endblock content %}

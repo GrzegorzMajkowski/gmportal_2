@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+{%block content%}
+
+<br>
+<div class="container">
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <h3>Przelew z rachunku nr {{account_num}}</h3>
+        </div>
+
+        <div class="body" style="padding: 10px;">
+            <form method="POST">
+                {{form.hidden_tag()}}
+
+                <div class="form-group row">
+                    {{form.target_account_number.label(class="col-sm-2 col-form-label")}}
+                    <div class="col-sm-10">
+                        {{form.target_account_number(class="form-control")}}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    {{form.transfer_title.label(class="col-sm-2 col-form-label")}}
+                    <div class="col-sm-10">
+                        {{form.transfer_title(class="form-control")}}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    {{form.quote.label(class="col-sm-2 col-form-label")}}
+                    <div class="col-sm-10">
+                        {{form.quote(class="form-control", placeholder="you@example.com")}}
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <label for="" class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        {{form.submit(class="btn btn-primary ")}}
+                        <a class="btn btn-primary" href="{{url_for('bankBP.bank_home')}}" role="button">Anuluj</a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock content %}

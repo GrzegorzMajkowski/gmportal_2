@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">GM Portal</h1>
+    <p class="lead">Zalogowany użytkownik: {{username}}</p>
+    <p class="lead">Twoja rola: {{role}}</p>
+
+    <hr class="my-4">
+    <p></p>
+    <a class="btn btn-primary " href="{{ url_for('authBP.logout') }}" role="button">Wyloguj</a>
+</div>
+{% endblock content %}

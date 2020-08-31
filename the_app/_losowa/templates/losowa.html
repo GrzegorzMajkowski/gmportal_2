@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1 class="display-4">L O S O V A </h1>
+    <p class="lead">Rozrywka na najwyższym poziomie.</p>
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+            <div class="card" style="min-height: 305px;">
+                <div class="card-header">
+                    <h3>Gra</h3>
+                </div>
+                <div class="card-body">
+                    <br>
+
+                    <h5 class="card-title">Zgadnij liczbę w zakresie od 1 do 100</h5>
+
+                    <div class="login-form">
+                        <form method="post">
+                            {{form.hidden_tag()}}
+
+                            <div class="form-group">
+                                {{form.input_value(class="form-control" , placeholder="Podaj liczbę....", autofocus=true, autocomplete="off")}}
+                            </div>
+
+
+                            {% if game_ending == True %}
+                            <ul class="nav nav-pills nav-fill">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="{{ url_for('losowaBP.prelosowa') }}">Nowa gra</a>
+                                </li>
+                            </ul>
+                            {% else  %}
+
+                            <div class="form-group">
+                                {{form.submit(class="btn btn-primary btn-block")}}
+                            </div>
+                            {% endif %}
+
+                            
+                            {% if warn_msg %}
+                            <div class="alert alert-danger" role="alert">
+                                {{warn_msg}}
+                            </div>
+                                
+                            {% endif %}
+                                
+                            <p>{{ current_result }}</p>
+                            <p>{{ actual_turn }}</p>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col">
+            <div class="card" style="min-height: 305px;">
+                <div class="card-header">
+                    <h3>Wynik</h3>
+                </div>
+                <div class="card-body">
+
+                    {% for item in list_of_turns %}
+                        {% if item == 'to_much' %}
+                            <div class="p-0 mb-1 za-duzo text-white text-center rounded">Za dużo</div>
+                        {% elif item=='to_little' %}
+                            <div class="p-0 mb-1 za-malo text-white text-center rounded">Za mało</div>
+                        {% elif item=='error_' %}
+                            <div class="p-0 mb-1 bg-light text-muted  text-center rounded">Błędna wartość</div>
+                        {% elif item=='win' %}
+                            <div class="p-0 mb-1 bg-success text-white text-center rounded">!!! BRAWO ZGADLEŚ !!! ({{actual_turn}} )</div>
+                        {% endif %}
+                    {% endfor %}
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+        {% endblock content %}

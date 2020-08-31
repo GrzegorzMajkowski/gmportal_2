@@ -1,0 +1,150 @@
+{% extends 'base.html'%}
+{%block content%}
+
+<br>
+<div class="container">
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <h5>Dane klienta nr {{customer[1]}}</h5>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-sm table-bordered ">
+                <tr>
+                    <th scope="row" style="width:10em">Imię i Nazwisko: </th>
+                    <td>{{customer[2]}} {{customer[3]}}</td>
+
+                </tr>
+                <tr>
+                    <th scope="row" style="width:10em">Data urodzenia: </th>
+                    <td>{{customer[2]}} {{customer[9]}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">e-mail:</th>
+                    <td>{{customer[4]}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Adres:</th>
+                    <td>{{customer[5]}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Miasto</th>
+                    <td>{{customer[6]}}</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {%for category, mess in messages%}
+    <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Potwierdzenie:</strong>
+        <br>
+        {{mess}}
+    </div>
+    {%endfor%}
+    {% endif %}
+    {% endwith %}
+
+
+
+
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <h3>Rachunek nr {{account[0]}} </h3>
+        </div>
+        <div class="card-body">
+            <table class="table table-sm table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Nr konta</th>
+                        <th scope="col">Nazwa</th>
+                        <th scope="col">Stan konta</th>
+                        <th scope="col">Data utworzenia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="#">{{account[0]}}</a></td>
+                        <td>{{account[1]}}</td>
+                        <td>{{account[2]}}</td>
+                        <td>{{account[3].strftime('%Y-%m-%d')}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="d-flex">
+            <div class="">
+            <a href="{{url_for('bankBP.bank_cash_in', account_num=account[0])}}" class="btn btn-success">Wpłata w kasie</a>
+            <a href="{{url_for('bankBP.bank_cash_out', account_num=account[0])}}" class="btn btn-danger">Wypłata z kasy</a>
+            <a href="{{url_for('bankBP.bank_wire_transfer', account_num=account[0])}}" class="btn btn-warning">Przelew na rachunek</a>
+            </div>
+            <div class="ml-auto" >
+                <a href="{{url_for('bankBP.bank_customer_page', cust_num=customer[1])}}" class="btn btn-primary">Wszystkie rachunki klienta</a>
+                <a href="{{url_for('bankBP.bank_home')}}" class="btn btn-primary">Wyjście do menu</a>
+            </div>
+            </div>
+        
+
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <h5>Historia transakcji rachunku nr {{account[0]}} </h5>
+        </div>
+        {% if transactions %}
+        <div class="card-body">
+            <table class="table table-sm table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Nr_trans</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Typ</th>
+                        <th scope="col">Tytuł</th>
+                        <th scope="col">Kwota</th>
+                        <th scope="col">Stan po trans</th>
+                        <th scope="col">Konto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- {%set summary = [0]%} SUMOWANIE W TEMPLATE-->
+                    {% for transaction in transactions%}
+                    <tr>
+                        
+                        <td><a href="{{url_for('bankBP.bank_transaction_details', transaction_num=transaction[0])}}">{{transaction[0]}}</a></td>
+                        <td>{{transaction[1].strftime('%Y-%m-%d, %H:%M')}}</td>
+                        <td>{{transaction[2]}}</td>
+                        <td>{{transaction[3]}}</td>
+                        <td>{{transaction[4]}}</td>
+                        <td>{{transaction[5]}}</td>
+                        <td>{{transaction[6]}}</td>
+                    
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    {%else%}
+    <p class="ml-4 mt-2">Brak transakcji</p>
+    {%endif%}
+
+
+
+
+
+
+
+
+</div>
+
+
+{% endblock content %}

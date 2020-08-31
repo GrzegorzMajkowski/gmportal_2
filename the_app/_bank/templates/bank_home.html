@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{%block content %}
+
+<div class="jumbotron">
+    <h1 class="display-4">Bank de Vanini </h1>
+    <p class="lead">Dbamy o Twoje pieniądze.</p>
+</div>
+<div class="container">
+    {%for mess in get_flashed_messages()%}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Potwierdzenie:</strong>
+        <br>
+        {{mess}}
+    </div>
+    {%endfor%}
+
+
+
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-6">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action ">1) Wybór KONTA - numer (9xxx)</a>
+                <a href="#" class="list-group-item list-group-item-action">2) Wybór KLIENTA - numer (5xxx)</a>
+                <a href="{{url_for('bankBP.bank_all_customers')}}" class="list-group-item list-group-item-action">3)
+                    Lista klientów</a>
+                <a href="{{url_for('bankBP.bank_all_customers')}}" class="list-group-item list-group-item-action">4)
+                    Szukaj klienta - nazwisko</a>
+                <a href="{{url_for('bankBP.bank_customer')}}" class="list-group-item list-group-item-action">5) Dodaj
+                    nowego klienta</a>
+
+                <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1"
+                    aria-disabled="true">6) Ustawienia</a>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+
+</div>
+
+<footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2020 Superbank S.A.</p>
+    <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Privacy</a></li>
+        <li class="list-inline-item"><a href="#">Terms</a></li>
+        <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+</footer>
+
+
+{%endblock content%}

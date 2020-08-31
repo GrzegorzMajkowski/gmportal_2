@@ -1,0 +1,53 @@
+{% extends 'base.html'%}
+{%block content%}
+
+<br>
+<div class="container">
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <h5>Szczegóły transakcji nr {{transactions[0][0]}}</h5>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-sm table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Nr_trans</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Typ</th>
+                        <th scope="col">Tytuł</th>
+                        <th scope="col">Kwota</th>
+                        <th scope="col">Stan po trans</th>
+                        <th scope="col">Konto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions%}
+                    <tr>
+                        
+                        <td>{{transaction[0]}}</td>
+                        <td>{{transaction[1].strftime('%Y-%m-%d, %H:%M')}}</td>
+                        <td>{{transaction[2]}}</td>
+                        <td>{{transaction[3]}}</td>
+                        <td>{{transaction[4]}}</td>
+                        <td>{{transaction[5]}}</td>
+                        <td><a href="{{url_for('bankBP.bank_account_page', account_num=transaction[6])}}">{{transaction[6]}}</a></td>
+                    
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+
+
+
+
+</div>
+
+
+{% endblock content %}

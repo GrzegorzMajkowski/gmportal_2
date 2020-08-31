@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Błąd logowania!  :-(</h1>
+    <p class="lead">Zły użytkownik lub hasło.</p>
+    <hr class="my-4">
+    <p>Nie martw się, to być może błąd przy wpisywaniu uzytkownika lub hasła. Spróbuj jeszcze raz. Jezeli nie masz zarejestrowanego użytkownika to zrób to teraz!</p>
+    <a class="btn btn-primary " href="{{ url_for('authBP.login') }}" role="button">Logowanie</a>
+    <a class="btn btn-primary " href="{{ url_for('authBP.register') }}" role="button">Rejestracja</a>
+  </div>
+{% endblock content %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{%block content %}
+<br>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <form action="" method="POST">
+                    {{form.hidden_tag()}}
+                    <div class="form-group row">
+                        {{form.name.label(class="col-sm-3 col-form-label")}}
+                        <div class="col-sm-4">
+                            {{form.name(class="form-control")}}
+                        </div>
+                        <div class="col-sm-4">
+                            {{form.submit(class="btn btn-primary ")}}
+                            <a class="btn btn-primary" href="{{url_for('bankBP.bank_all_customers')}}" role="button">Wyczyść</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <table class="table table-hover table-bordered">
+            <thead class="table-secondary">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nr konta</th>
+                    <th scope="col">Nazwisko</th>
+                    <th scope="col">Imię</th>
+                    <th scope="col">e-mail</th>
+                    <th scope="col">Adres</th>
+                    <th scope="col">Miasto</th>
+                    <th scope="col">Data urodzenia</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in customers %}
+                <tr>
+                    <td>
+                        <a class=" btn btn-outline-primary btn-sm" href="{{ url_for('bankBP.bank_customer_page', cust_num=customer[0]) }}" >
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-text" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4 1h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H4z"/>
+                            <path fill-rule="evenodd" d="M4.5 10.5A.5.5 0 0 1 5 10h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                        </a>
+                        <a class=" btn btn-outline-primary btn-sm" href="{{ url_for('bankBP.update_bank_customer', cust_num=customer[0]) }}" >
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4 1h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H4z"/>
+                            <path d="M13.784 14c-.497-1.27-1.988-3-5.784-3s-5.287 1.73-5.784 3h11.568z"/>
+                            <path fill-rule="evenodd" d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                        </svg>
+                        </a>
+                    </td>
+                    <td>{{customer[0]}}</td>
+                    <td>{{customer[2]}}</td>
+                    <td>{{customer[1]}}</td>
+                    <td>{{customer[3]}}</td>
+                    <td>{{customer[4]}}</td>
+                    <td>{{customer[5]}}</td>
+                    <td>{{customer[6]}}</td>
+                </tr>
+                
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock content %}
