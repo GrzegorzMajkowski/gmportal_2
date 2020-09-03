@@ -1,0 +1,50 @@
+{% extends 'base.html'%}
+{%block content%}
+
+<br>
+<div class="container">
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <h3>Wyszukiwarka uniwersalna</h3>
+        </div>
+
+        <div class="card-body">
+            <form method="POST" class="form-inline">
+
+                {{form.hidden_tag()}}
+                {{form.search_result.label(class=" col-form-label")}}
+                {{form.search_result(class="form-control ml-1", autofocus=true )}}
+                {{form.submit(class="btn btn-primary ml-1")}}
+
+                <div class="ml-2">
+                    <a href="{{url_for('bankBP.bank_home')}}" class="btn btn-primary">Anuluj - Wyjście do menu</a>
+                </div>
+
+            </form>
+            {%for mess in get_flashed_messages()%}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>UWAGA:</strong>
+                <br>
+                {{mess}}
+            </div>
+            {%endfor%}
+
+            <br>
+            <ul>
+                <li>5xxx - Wyszukiwanie numeru klienta</li>
+                <li>9xxx - Wyszukiwanie numeru konta</li>
+                <li>7xxx - Wyszukiwanie numeru transakcji</li>
+            </ul>
+
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock content %}

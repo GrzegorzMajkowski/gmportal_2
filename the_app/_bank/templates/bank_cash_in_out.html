@@ -14,8 +14,8 @@
 
                 {{form.hidden_tag()}}
                 {{form.quote.label(class=" col-form-label")}}
-                {{form.quote(class="form-control ml-1")}}
-                {{form.submit(class="btn btn-primary ml-1")}}
+                {{form.quote(class="form-control ml-1",autofocus=true)}}
+                {{form.submit(class="btn btn-primary ml-1" , id="submitbutton", onclick="document.getElementById('submitbutton').disabled = true;")}}
 
                 <div class="ml-auto">
                     <a href="{{url_for('bankBP.bank_home')}}" class="btn btn-primary">Anuluj - Wyjście do menu</a>

@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, flash, request, Blueprint,session
 from flask_login import  current_user,  login_required
-from the_app._bank.forms import Customer_form, Search_for_customer, Go_to_account, Create_account, Cash_in_out, Money_transfer
+from the_app._bank.forms import Customer_form, Search_for_customer, Go_to_account, Create_account, Cash_in_out, Money_transfer, Search_form
 from the_app._bank.models import add_new_customer, get_customer,update_customer,get_all_customers, get_customers_by_name, get_accounts, get_account, get_last_transactions, add_new_account, make_transaction, get_transaction_details
 
 
@@ -176,3 +176,29 @@ def bank_wire_transfer(account_num):
 def bank_transaction_details(transaction_num):
     transactions = get_transaction_details(transaction_num)
     return render_template('bank_transaction_details.html', transactions=transactions)
+
+@bankBP.route('/bank_search', methods=['GET', 'POST'])
+@login_required
+def bank_search():
+    form= Search_form()
+    if form.validate_on_submit():
+        search_item = form.search_result.data
+
+        if  len(search_item)==4:
+            if search_item[0]=='5':
+                return redirect((url_for('bankBP.bank_customer_page', cust_num=search_item)))
+            elif search_item[0]=='9':
+                return redirect((url_for('bankBP.bank_account_page', account_num=search_item)))
+            elif search_item[0]=='7':
+                return redirect((url_for('bankBP.bank_transaction_details', transaction_num=search_item)))
+            else:
+                flash('Nieprawidłowe kryteruim wyszukiwania! Numery muszą zaczyanć się odpowiednio dla poszukiwanego elementu 5-, 9-, 7-.')
+                return render_template('bank_search.html', form=form)
+        else:
+                flash('Nieprawidłowe kryteruim wyszukiwania! Wyszukiwarka dziala dla numerów 4 cyfrowych.')
+                return render_template('bank_search.html', form=form)
+                
+    return render_template('bank_search.html', form=form)
+
+
+

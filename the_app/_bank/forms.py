@@ -36,3 +36,8 @@ class Money_transfer(FlaskForm):
     transfer_title = StringField('Tytuł przelewu:', validators=[DataRequired()])
     quote = StringField('Podaj kwotę przelewu:',validators=[DataRequired()])
     submit = SubmitField('Wykonaj')
+
+class Search_form(FlaskForm):
+    search_result = StringField('Wpisz wyszukiwany numer :',validators=[DataRequired()])
+    submit = SubmitField('Wyszukaj')
+

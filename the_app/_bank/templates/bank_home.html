@@ -25,17 +25,14 @@
         <div class="col"></div>
         <div class="col-6">
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action ">1) Wybór KONTA - numer (9xxx)</a>
-                <a href="#" class="list-group-item list-group-item-action">2) Wybór KLIENTA - numer (5xxx)</a>
-                <a href="{{url_for('bankBP.bank_all_customers')}}" class="list-group-item list-group-item-action">3)
+                <a href="{{url_for('bankBP.bank_search')}}" class="list-group-item list-group-item-action ">1) Wyszukiwarka - numer (9xxx, 5xxx, 7xxx)</a>
+                <a href="{{url_for('bankBP.bank_all_customers')}}" class="list-group-item list-group-item-action">2)
                     Lista klientów</a>
-                <a href="{{url_for('bankBP.bank_all_customers')}}" class="list-group-item list-group-item-action">4)
-                    Szukaj klienta - nazwisko</a>
-                <a href="{{url_for('bankBP.bank_customer')}}" class="list-group-item list-group-item-action">5) Dodaj
+                <a href="{{url_for('bankBP.bank_customer')}}" class="list-group-item list-group-item-action">3) Dodaj
                     nowego klienta</a>
 
                 <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1"
-                    aria-disabled="true">6) Ustawienia</a>
+                    aria-disabled="true">4) Ustawienia</a>
             </div>
         </div>
         <div class="col"></div>
@@ -45,6 +42,7 @@
 
 <footer class="my-5 pt-5 text-muted text-center text-small">
     <p class="mb-1">&copy; 2020 Superbank S.A.</p>
+    <p class="mb-1"><small>ver. 2020-09-03</small> </p>
     <ul class="list-inline">
         <li class="list-inline-item"><a href="#">Privacy</a></li>
         <li class="list-inline-item"><a href="#">Terms</a></li>
